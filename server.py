@@ -16,9 +16,9 @@ db = client.heroku_j47rhw75
 
 @app.route('/')
 def root():
-    cur = db.web_demo.find()
+    cur = db.web_demo.find('User':'Sreeju')
     data = json.loads(dumps(cur))
-    
+
     return template('templates/index.tpl', res=data)
 
 @app.route('/add')
@@ -30,7 +30,7 @@ def add_data():
     img = request.forms.get('img')
     name = request.forms.get('name')
 
-    cur = db.web_demo.insert({'img': img, 'name': name})
+    cur = db.web_demo.insert({'img': img, 'name': name,'user': 'Sreeju'})
 
     redirect('/')
 
@@ -39,7 +39,7 @@ def add_data():
 def del_data(oid_data):
     cur = db.web_demo.remove({'_id': ObjectId(str(oid_data))})
 
-    return {'status': 'ok'}	
+    return {'status': 'ok'}
 
 @app.route('/manifest')
 def manifest():
