@@ -16,7 +16,7 @@ db = client.heroku_j47rhw75
 
 @app.route('/')
 def root():
-    cur = db.web_demo.find('User':'Sreeju')
+    cur = db.web_demo.find({'User':'Sreeju'})
     data = json.loads(dumps(cur))
 
     return template('templates/index.tpl', res=data)
